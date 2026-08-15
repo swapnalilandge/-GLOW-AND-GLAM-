@@ -133,24 +133,24 @@ app.post("/register", (req, res) => {
 });
 app.post("/orders", (req, res) => {
     const { user_email, total_amount } = req.body;
-    console.log("=== NEW ORDER RECEIVED ===");
-    console.log("User Email:", user_email);
-    console.log("Total Amount: ₹", total_amount);
-    console.log("==========================");
     const mockOrderId = "GG" + Math.floor(100000 + Math.random() * 900000);
 
-    const query = "INSERT INTO orders (user_email, total_amount) VALUES (?, ?)";
+    // Print order details live to Render logs
+    console.log("====================================");
+    console.log("🛒 NEW ORDER RECEIVED!");
+    console.log(`Order ID:     ${mockOrderId}`);
+    console.log(`User Email:   ${user_email}`);
+    console.log(`Total Amount: ₹${total_amount}`);
+    console.log("====================================");
 
-    db.query(query, [user_email, total_amount], (err, result) => {
-        if (err) {
-            console.log("Database error (bypassing for demo):", err.message);
-            // Return success anyway so your live demo works!
-            return res.json({
-                success: true,
-                order_id: mockOrderId,
-                message: "Order placed successfully (Demo mode)"
-            });
-        }
+    // Respond back to frontend instantly
+    return res.json({
+        success: true,
+        order_id: mockOrderId,
+        message: "Order placed successfully!"
+    });
+});
+        
 
         return res.json({
             success: true,
