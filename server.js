@@ -133,6 +133,10 @@ app.post("/register", (req, res) => {
 });
 app.post("/orders", (req, res) => {
     const { user_email, total_amount } = req.body;
+    console.log("=== NEW ORDER RECEIVED ===");
+    console.log("User Email:", user_email);
+    console.log("Total Amount: ₹", total_amount);
+    console.log("==========================");
     const mockOrderId = "GG" + Math.floor(100000 + Math.random() * 900000);
 
     const query = "INSERT INTO orders (user_email, total_amount) VALUES (?, ?)";
