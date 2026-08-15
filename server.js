@@ -11,19 +11,22 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 // MySQL Connection
+// In server.js
+const mysql = require('mysql2');
+
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'ecommerce'
 });
 
 db.connect((err) => {
     if (err) {
-        console.log("Database connection failed");
-        throw err;
+        console.log("Database connection skipped or unavailable on cloud. Running server in demo mode.");
+    } else {
+        console.log("MySQL Database Connected!");
     }
-    console.log("Connected to MySQL");
 });
 
 app.get("/", (req, res) => {
