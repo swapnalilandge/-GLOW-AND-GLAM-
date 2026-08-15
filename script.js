@@ -134,7 +134,7 @@ cart.forEach(item => {
 
 let userEmail = email;
 
-fetch("/orders", {
+fetch("https://glow-and-glam-4.onrender.com/orders", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
@@ -259,7 +259,7 @@ async function showOrderHistory() {
     try {
 
         const response = await fetch(
-            "/orders/" + encodeURIComponent(email)
+            "https://glow-and-glam-4.onrender.com/orders" + encodeURIComponent(email)
         );
 
         const data = await response.json();
