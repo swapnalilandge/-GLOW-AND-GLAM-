@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Product Manager</title>
+</head>
+
+<body>
+
+    <h1>Admin Product Manager</h1>
+
+    <h2>Add Product</h2>
+
+    <form id="productForm">
+        <input type="text" id="name" placeholder="Product name" required>
+        <input type="text" id="category" placeholder="Category" required>
+        <input type="number" id="price" placeholder="Price" required>
+        <input type="text" id="image" placeholder="Image filename">
+        <input type="number" id="stock" placeholder="Stock" required>
+        <textarea id="description" placeholder="Description"></textarea>
+
+        <button type="submit">Add Product</button>
+    </form>
+
+    <h2>Products</h2>
+
+    <div id="productList"></div>
+    <p id="testMessage">loading products....</p>
+<script>
+document.getElementById("productForm").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const product = {
+        name: document.getElementById("name").value,
+        category: document.getElementById("category").value,
+        price: document.getElementById("price").value,
+        image: document.getElementById("image").value,
+        description: document.getElementById("description").value,
+        stock: document.getElementById("stock").value
+    };
+
+    try {
+
+        const response = await fetch("/products", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(product)
+        });
+
+        const result = await response.json();
+
+        alert(result.message);
+
+        if (result.success) {
+            document.getElementById("productForm").reset();
+        }
+
+    } catch (error) {
+
+        console.log(error);
+        alert("Unable to connect to server.");
+
+    }
+
+});
+</script>
+<script>
+async function loadProducts() {
+    try {
+        const response = await fetch("/products");
+        const products = await response.json();
+
+        const list = document.getElementById("productList");
+
+        list.innerHTML = "";
+
+        products.forEach(product => {
+            list.innerHTML += `
+                <div>
+                    <h3>${product.name}</h3>
+                    <p>Category: ${product.category}</p>
+                    <p>Price: ₹${product.price}</p>
+                    <p>Stock: ${product.stock}</p>
+                    <p>${product.description}</p>
+                    <hr>
+                </div>
+            `;
+        });
+
+        document.getElementById("testMessage").style.display = "none";
+
+    } catch (error) {
+        console.log("Error loading products:", error);
+        document.getElementById("testMessage").textContent =
+            "Unable to load products.";
+    }
+}
+
+loadProducts();
+</script>
+</body>
+</html>

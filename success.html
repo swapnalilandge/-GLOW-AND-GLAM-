@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <h2>Glow & Glam</h2>
+</nav>
+
+<div style="text-align:center; margin-top:80px;">
+    <h1 style="color:green;">🎉 Order Placed Successfully!</h1>
+    <h2 id="orderId"></h2>
+
+    <p>Thank you for shopping with Glow & Glam.</p>
+    <p>Your order has been placed successfully.</p>
+    <p id="deliveryDate"></p>
+
+    <br>
+
+    <a href="index.html">
+        <button>Continue Shopping</button>
+    </a>
+
+</div>
+<script>
+let order = "GG" + Math.floor(Math.random() * 1000000);
+
+document.getElementById("orderId").innerHTML =
+"Order ID: " + order;
+
+let today = new Date();
+today.setDate(today.getDate() + 5);
+
+document.getElementById("deliveryDate").innerHTML =
+"Estimated Delivery: " + today.toDateString();
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Glow & Glam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <h2>Glow & Glam</h2>
+</nav>
+
+<section class="details">
+    <h1>Login</h1>
+
+   <form onsubmit="loginUser(event)">
+
+    <input type="email" id="email" placeholder="Enter Email" required><br><br>
+
+    <input type="password" id="password" placeholder="Enter Password" required><br><br>
+
+    <button type="submit">Login</button>
+
+</form>
+    <br>
+
+    <p>Don't have an account?</p>
+
+    <a href="register.html">
+        Create Account</a>
+    </a>
+
+    <br><br>
+
+    <a href="index.html">
+        <button>Back to Home</button>
+    </a>
+</section>
+<script>
+async function loginUser(event) {
+    event.preventDefault();
+
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    try {
+        let response = await fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+
+        let result = await response.json();
+
+        alert(result.message);
+
+        if (result.success) {
+            localStorage.setItem("userEmail",email);
+            window.location.href = "index.html";
+        }
+
+    } catch (error) {
+        alert("Unable to connect to server.");
+        console.log(error);
+    }
+}
+</script>
+</body>
+</html>

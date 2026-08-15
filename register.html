@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <h2>Glow & Glam</h2>
+</nav>
+
+<section class="details">
+    <h1>Create Account</h1>
+
+    <form onsubmit="registerUser(event)">
+
+    <input type="text" id="name" placeholder="Full Name" required><br><br>
+
+    <input type="email" id="email" placeholder="Email Address" required><br><br>
+
+    <input type="password" id="password" placeholder="Password" required><br><br>
+
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required><br><br>
+
+    <button type="submit">Register</button>
+
+</form>
+
+    <br>
+
+    <p>Already have an account?
+        <a href="login.html">Login</a>
+    </p>
+</section>
+<script>
+async function registerUser(event) {
+
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+    }
+
+    try {
+
+        let response = await fetch("/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            })
+        });
+
+        let result = await response.json();
+
+        alert(result.message);
+
+        if (result.success) {
+            window.location.href = "login.html";
+        }
+
+    } catch (error) {
+
+        console.log(error);
+        alert("Unable to connect to server.");
+
+    }
+}
+</script>
+
+</body>
+</html>

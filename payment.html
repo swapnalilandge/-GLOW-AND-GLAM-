@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Glow & Glam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <h2>Glow & Glam</h2>
+</nav>
+
+<section class="details">
+
+    <h1>Payment</h1>
+<h3 id="orderTotal"></h3>
+    <form onsubmit="return validatePayment()">
+
+    <label>Full Name</label><br>
+    <input type="text" id="name" placeholder="Enter your name"><br><br>
+
+    <label>Email</label><br>
+    <input type="email" id="email" placeholder="Enter your email"><br><br>
+
+    <label>Phone Number</label><br>
+    <input type="text" id="phone" placeholder="Enter your phone number"><br><br>
+
+    <label>Delivery Address</label><br>
+    <textarea id="address" placeholder="Enter your address"></textarea><br><br>
+
+    <h3>Select Payment Method</h3>
+
+<label>
+<input type="radio" name="payment" value="COD" onclick="showPaymentDetails()" checked>
+Cash on Delivery
+</label><br><br>
+
+<label>
+<input type="radio" name="payment" value="UPI" onclick="showPaymentDetails()">
+UPI
+</label><br><br>
+
+<label>
+<input type="radio" name="payment" value="Card" onclick="showPaymentDetails()">
+Credit / Debit Card
+</label><br><br>
+
+<label>
+<input type="radio" name="payment" value="NetBanking" onclick="showPaymentDetails()">
+Net Banking
+</label><br><br>
+
+<div id="paymentDetails"></div>
+
+<button type="submit">Place Order</button>
+
+</form>
+    <br>
+
+    <a href="cart.html">
+        <button>Back to Cart</button>
+    </a>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>

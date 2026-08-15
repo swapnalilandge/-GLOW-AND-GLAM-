@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow & Glam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <h2>Glow & Glam</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#products">products</a></li>
+            <li><a href="cart.html">cart</a></li>
+            <li><a href="login.html">login</a></li>
+            <li><a href="contact.html">contact</a></li>
+        </ul>
+        <div class="search-box">
+    <input type="text"id="search"placeholder="Search products..." onkeyup="searchProducts()">
+    <button>🔍</button>
+     </div>
+     <span id="loggedInUser"></span>
+     <li><button onclick="logout()">Logout</button></li>
+     <a href="orderhistory.html">
+        <button>order history</button></a>
+     </a>
+        </nav>
+        <section class="hero">
+        <h1>Discover your natural beauty</h1>
+        <p>Premium Beauty Products at Affordable Price</p>
+        <a href="#products">
+        <button>Shop Now</button></a>
+        </section>
+        <section class="categories">
+    <h2>Shop by Category</h2>
+
+    <div class="category-container">
+
+        <div class="category-card">
+            <a href="lipstick.html">
+            <img src="images/LIPSTICK.jpg" alt="Lipstick">
+            <h3>Lipstick</h3></a>
+        </div>
+
+        <div class="category-card">
+            <a href="FaceSerum.html">
+            <img src="images/FaceSerum.jpg" alt="Serum">
+            <h3>Serum</h3></a>
+        </div>
+
+        <div class="category-card">
+            <a href="face wash.html">
+            <img src="images/facewash3.jpg" alt="Face Wash">
+            <h3>Face Wash</h3></a>
+        </div>
+
+        <div class="category-card">
+            <a href="perfume.html">
+            <img src="images/perfume.jpg" alt="Perfume">
+            <h3>Perfume</h3></a>
+        </div>
+
+    </div>
+</section>
+        <section>
+            
+            <h2>Featured Products</h2>
+            </section>
+            <section class="products"id="products">
+            <div class="product">
+            <h3>Matte Lipstick</h3>
+            <p>Price:₹599</p>
+            <a href="lipstick.html">
+            <button>view details</button></a>
+            <button onclick="addToCart('Matte Lipstick',599)">Add to cart</button>
+        </div>
+        <div class="product">
+            <h3>Vitamin C Serum</h3>
+            <p>Price:₹899</p>
+            <a href="Faceserum.html">
+            <button>view details</button></a>
+            <button onclick="addToCart('Vitamin C Serum',899)">Add to cart</button>
+        </div>
+        <div class="product">
+            <h3>Face Wash</h3>
+            <p>Price:₹399</p>
+            <a href="face wash.html">
+            <button>view details</button></a>
+             <button onclick="addToCart('Face Wash',399)">Add to cart</button>
+        </div>
+        <div class="product">
+            <h3>Perfume</h3>
+            <p>Price:₹499</p>
+            <a href="perfume.html">
+            <button>view details</button></a>
+          <button onclick="addToCart('Perfume',499)">Add to cart</button>
+        </div>
+        </section>
+        <section class="about">
+    <h2>About Glow & Glam</h2>
+    <p>
+        Glow & Glam provides premium beauty products including skincare,
+        makeup, perfumes and face care products at affordable prices.
+    </p>
+</section>
+<section class="reviews">
+    <h2>Customer Reviews</h2>
+
+    <div class="review-container">
+
+        <div class="review-card">
+            <h3>⭐ ⭐ ⭐ ⭐ ⭐</h3>
+            <p>"Amazing quality products. I loved the Vitamin C Serum!"</p>
+            <h4>- Priya</h4>
+        </div>
+
+        <div class="review-card">
+            <h3>⭐ ⭐ ⭐ ⭐ ⭐</h3>
+            <p>"Fast delivery and beautiful packaging."</p>
+            <h4>- Sneha</h4>
+        </div>
+
+        <div class="review-card">
+            <h3>⭐ ⭐ ⭐ ⭐</h3>
+            <p>"Lipstick color is perfect. Worth the price."</p>
+            <h4>- Anjali</h4>
+        </div>
+
+    </div>
+</section>
+<section class="newsletter">
+    <h2>Subscribe to Our Newsletter</h2>
+    <p>Get updates about new products and exclusive offers.</p>
+
+    <input type="email" id="newsletterEmail" placeholder="Enter your email">
+
+    <button onclick="subscribe()">Subscribe</button>
+</section>
+        <footer>
+            <p>©2026 Glow & Glam.All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="#">📸instagram</a>
+                <a href="#">🕊twitter</a>
+        </footer>
+        <script>
+fetch("/products")
+    .then(response => response.json())
+    .then(products => {
+        console.log("Products from MySQL:", products);
+    })
+    .catch(error => {
+        console.log("Error:", error);
+    });
+</script>
+        <script src="script.js"></script>
+</body>
+</html>
