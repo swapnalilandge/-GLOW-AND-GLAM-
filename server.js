@@ -11,9 +11,6 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 // MySQL Connection
-// In server.js
-const mysql = require('mysql2');
-
 const db = mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
